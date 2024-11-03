@@ -5,14 +5,18 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from './screens/home';
 import CreateUser from './screens/createUser';
 
+import StoreContextProvider from "./store/context";
+
 const Drawer = createDrawerNavigator();
 export default function App() {
   return (
-    <NavigationContainer>
-      <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={Home}/>
-        <Drawer.Screen name="Create user" component={CreateUser}/>
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <StoreContextProvider>
+      <NavigationContainer>
+        <Drawer.Navigator>
+          <Drawer.Screen name="Home" component={Home}/>
+          <Drawer.Screen name="Create user" component={CreateUser}/>
+        </Drawer.Navigator>
+      </NavigationContainer>
+    </StoreContextProvider>
   );
 }
