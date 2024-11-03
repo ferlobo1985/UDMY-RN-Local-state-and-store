@@ -5,18 +5,24 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from './screens/home';
 import CreateUser from './screens/createUser';
 
-import StoreContextProvider from "./store/context";
+// import StoreContextProvider from "./store/context";
+// REDUX
+import { store } from './store/redux/store';
+import { Provider } from "react-redux";
+
 
 const Drawer = createDrawerNavigator();
 export default function App() {
   return (
-    <StoreContextProvider>
+    <Provider store={store}>
+    {/* // <StoreContextProvider> */}
       <NavigationContainer>
         <Drawer.Navigator>
           <Drawer.Screen name="Home" component={Home}/>
           <Drawer.Screen name="Create user" component={CreateUser}/>
         </Drawer.Navigator>
       </NavigationContainer>
-    </StoreContextProvider>
+    {/* // </StoreContextProvider> */}
+    </Provider>
   );
 }
