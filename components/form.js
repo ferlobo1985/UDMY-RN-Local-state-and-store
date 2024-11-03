@@ -4,15 +4,19 @@ import * as yup from "yup";
 
 import { useNavigation } from "@react-navigation/native";
 /// CONTEXT
-import { useContext } from "react";
-import { StoreContext } from "../store/context";
+// import { useContext } from "react";
+// import { StoreContext } from "../store/context";
 
+/// REDUX
+import { useDispatch } from "react-redux";
+import { setNewUser } from '../store/redux/users';
 
 import CustomInput from "./utils/input.custom";
 
 export default function FormComp(){
-    const storeContext = useContext(StoreContext);
+    // const storeContext = useContext(StoreContext);
     const navigation = useNavigation();
+    const dispatch = useDispatch();
 
 
     const loginValidationSchema = yup.object({
@@ -42,7 +46,7 @@ export default function FormComp(){
         <Formik
             initialValues={{email:'',password:'',age:'',message:''}}
             onSubmit={(values,{ resetForm, setErrors })=>{
-                storeContext.setNewUser(values);
+                dispatch(setNewUser(values));
                 setTimeout(()=>{
                     resetForm();
                     setErrors({})
